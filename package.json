@@ -1,0 +1,33 @@
+{
+  "name": "account-tx-aggregator",
+  "version": "1.0.0",
+  "description": "Node project to fetch and store all the transactions ( Normal + ERC20 ) transactions for an account",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashwinYardi/account-tx-aggregator.git"
+  },
+  "author": "Ashwin Yardi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashwinYardi/account-tx-aggregator/issues"
+  },
+  "homepage": "https://github.com/ashwinYardi/account-tx-aggregator#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bn.js": "^4.12.0",
+    "convert-array-to-csv": "^2.0.0",
+    "dotenv": "^10.0.0",
+    "web3": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.17.9",
+    "ts-node": "^10.2.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  }
+}
