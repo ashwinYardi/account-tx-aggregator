@@ -48,5 +48,6 @@ export interface Transfer {
   to: string;
   currency: string;
   value: string;
+  valueRaw: string;
   type: string;
 }

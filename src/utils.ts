@@ -15,7 +15,10 @@ export function filterTransferTransactions(
       blockNumber: etherscanTx.blockNumber,
       to: etherscanTx.to,
       from: etherscanTx.from,
-      value: etherscanTx.value,
+      valueRaw: new BN(etherscanTx.value).toString(),
+      value: new BN(etherscanTx.value)
+        .div(new BN("1000000000000000000"))
+        .toString(),
       currency: "ETH",
       type:
         etherscanTx.to.toLocaleLowerCase() ===
@@ -32,12 +35,18 @@ export function filterTokenTransfers(
 ): Transfer[] {
   const transfers: Transfer[] = tokenTransfers.map(
     (etherscanTokenTx: EtherscanTokenTransfers) => {
+      const divisor: BN =
+        etherscanTokenTx.tokenSymbol === "USDC" ||
+        etherscanTokenTx.tokenSymbol === "USDT"
+          ? new BN("1000000")
+          : new BN("1000000000000000000");
       return {
         txHash: etherscanTokenTx.hash,
         blockNumber: etherscanTokenTx.blockNumber,
         to: etherscanTokenTx.to,
         from: etherscanTokenTx.from,
-        value: etherscanTokenTx.value,
+        value: new BN(etherscanTokenTx.value).div(divisor).toString(),
+        valueRaw: new BN(etherscanTokenTx.value).toString(),
         currency: etherscanTokenTx.tokenSymbol,
         type:
           etherscanTokenTx.to.toLocaleLowerCase() ===
